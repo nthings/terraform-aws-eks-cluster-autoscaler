@@ -10,26 +10,31 @@ resource "helm_release" "cluster_autoscaler" {
   set {
     name  = "fullnameOverride"
     value = var.fullname_override
+    type  = "string"
   }
 
   set {
     name  = "autoDiscovery.clusterName"
     value = var.cluster_name
+    type  = "string"
   }
 
   set {
     name  = "awsRegion"
     value = var.aws_region
+    type  = "string"
   }
 
   set {
     name  = "rbac.serviceAccount.name"
     value = var.service_account_name
+    type  = "string"
   }
 
   set {
     name  = "rbac.serviceAccount.annotations.eks\\.amazonaws\\.com/role-arn"
     value = aws_iam_role.kubernetes_cluster_autoscaler[0].arn
+    type  = "string"
   }
 
   values = [
