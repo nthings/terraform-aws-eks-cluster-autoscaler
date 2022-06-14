@@ -6,6 +6,8 @@ resource "helm_release" "cluster_autoscaler" {
   repository = var.helm_chart_repo
   version    = var.helm_chart_version
   namespace  = var.namespace
+  
+  wait_for_jobs = true
 
   set {
     name  = "fullnameOverride"
