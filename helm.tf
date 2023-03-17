@@ -38,6 +38,11 @@ resource "helm_release" "cluster_autoscaler" {
     value = aws_iam_role.kubernetes_cluster_autoscaler[0].arn
     type  = "string"
   }
+  
+  set {
+    name = "extraArgs.leader-elect"
+    value = false
+  }
 
   values = [
     yamlencode(var.settings)
